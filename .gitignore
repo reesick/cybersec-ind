@@ -51,11 +51,7 @@ cvelistV5/
 saved_models/
 checkpoints/
 
-baseline_outputs/
-tmp/
-output/
-logs/
-*.log
+
 
 *.pdf
 *.mp4
