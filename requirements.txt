@@ -1,0 +1,17 @@
+numpy
+pandas
+scipy
+scikit-learn
+statsmodels
+matplotlib
+seaborn
+plotly
+networkx
+pyyaml
+tqdm
+torch
+torch-geometric
+holidays
+tweepy
+requests
+openai
