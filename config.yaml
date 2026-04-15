@@ -1,0 +1,36 @@
+# Default config (safe to commit). Override secrets in config.local.yaml (see .gitignore).
+project:
+  seed: 42
+  start_date: "2011-07-01"
+  end_date: "2022-12-01"
+  forecast_start: "2023-01-01"
+  forecast_end: "2025-12-01"
+  data_dir: "data"
+  output_dir: "outputs"
+
+api:
+  elsevier_key: ""
+  twitter_bearer: ""
+  openai_key: ""
+  # Live connectors (Elsevier/Twitter/Hackmageddon) are not fully wired yet; when false, synthetic data is used without warnings.
+  use_live_apis: false
+
+model:
+  tin: 10
+  tout: 36
+  dropout: 0.4
+  lr: 0.001
+  epochs: 80
+  graph_k: 12
+  gcn_depth: 2
+  conv_channels: 16
+  alpha: 1.5
+  beta: 0.2
+  mc_iterations: 30
+
+search:
+  random_iterations: 20
+  lr_range: [0.0001, 0.01]
+  dropout_range: [0.2, 0.7]
+  conv_channels: [8, 12, 16]
+  gcn_depth: [1, 2, 3]

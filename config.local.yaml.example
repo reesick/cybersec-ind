@@ -1,0 +1,6 @@
+# Copy to config.local.yaml and fill in keys. config.local.yaml is gitignored.
+api:
+  elsevier_key: "YOUR_ELSEVIER_API_KEY"
+  twitter_bearer: "YOUR_TWITTER_BEARER_TOKEN"
+  openai_key: "YOUR_OPENAI_API_KEY"
+  use_live_apis: true
