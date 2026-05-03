@@ -58,6 +58,7 @@ Edit `config.yaml` to control:
 - `api.use_live_apis`: `true` for real APIs, `false` for synthetic
 - `apis.*`: Enable/disable individual data sources and set rate limits
 - `cache.refresh`: `true` to re-download cached data
+- `cache.reuse_recent_days`: reuse API cache newer than this many days
 
 ## Outputs
 

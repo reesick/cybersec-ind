@@ -82,6 +82,7 @@ class ConflictCollector:
                 cache_dir=cache_cfg.get("path", "data/raw/"),
                 enabled=cache_cfg.get("enabled", True),
                 refresh=cache_cfg.get("refresh", False),
+                reuse_recent_days=cache_cfg.get("reuse_recent_days", 7),
             )
 
     # ------------------------------------------------------------------

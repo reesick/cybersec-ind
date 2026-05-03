@@ -1,6 +1,20 @@
+# secrets
 config.local.yaml
+
+# python
 __pycache__/
 *.pyc
+*.pyo
 .pytest_cache/
 .venv/
 venv/
+*.egg-info/
+
+# frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+
+# model training artifacts (intermediate only — best model is kept)
+outputs/trial_*.pt
+outputs/_tmp.pt

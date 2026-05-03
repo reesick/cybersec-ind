@@ -53,6 +53,7 @@ class ElsevierCollector:
                 cache_dir=cache_cfg.get("path", "data/raw/"),
                 enabled=cache_cfg.get("enabled", True),
                 refresh=cache_cfg.get("refresh", False),
+                reuse_recent_days=cache_cfg.get("reuse_recent_days", 7),
             )
 
     # ------------------------------------------------------------------
@@ -158,6 +159,11 @@ class ElsevierCollector:
             "X-ELS-APIKey": self.api_key,
             "Accept": "application/json",
         }
+        elsevier_cfg = self.config.get("apis", {}).get("elsevier", {})
+        timeout = elsevier_cfg.get("timeout", 45)
+        max_retries = elsevier_cfg.get("max_retries", 4)
+        backoff_sec = elsevier_cfg.get("retry_backoff", 2.0)
+        max_failed_months = elsevier_cfg.get("max_failed_months", 5)
 
         start_year = pd.Timestamp(start_date).year
         end_year = pd.Timestamp(end_date).year
@@ -171,6 +177,8 @@ class ElsevierCollector:
 
         # Collect per-month counts by querying year-by-year
         month_counts: dict[str, int] = {}
+        failed_months = 0
+        session = requests.Session()
 
         for year in range(start_year, end_year + 1):
             for month_num in range(1, 13):
@@ -190,9 +198,29 @@ class ElsevierCollector:
                 }
 
                 try:
-                    resp = requests.get(
-                        base_url, headers=headers, params=params, timeout=20
+                    resp = self._scopus_get_with_retries(
+                        session=session,
+                        url=base_url,
+                        headers=headers,
+                        params=params,
+                        timeout=timeout,
+                        max_retries=max_retries,
+                        backoff_sec=backoff_sec,
+                        term=term,
+                        month_key=month_key,
                     )
+                    if resp is None:
+                        failed_months += 1
+                        month_counts[month_key] = 0
+                        if failed_months > max_failed_months:
+                            logger.warning(
+                                "Scopus failed for '%s' in more than %s months; falling back",
+                                term,
+                                max_failed_months,
+                            )
+                            return None
+                        time.sleep(sleep_sec)
+                        continue
                     if resp.status_code == 429:
                         # Quota exceeded
                         logger.warning("Scopus rate limit hit for '%s'", term)
@@ -206,7 +234,15 @@ class ElsevierCollector:
                     month_counts[month_key] = total
                 except (requests.RequestException, ValueError, KeyError) as exc:
                     logger.warning("Scopus query failed for '%s' %s: %s", term, month_key, exc)
+                    failed_months += 1
                     month_counts[month_key] = 0
+                    if failed_months > max_failed_months:
+                        logger.warning(
+                            "Scopus failed for '%s' in more than %s months; falling back",
+                            term,
+                            max_failed_months,
+                        )
+                        return None
 
                 time.sleep(sleep_sec)
 
@@ -217,10 +253,87 @@ class ElsevierCollector:
             dtype=int,
         )
 
-        if self._cache:
+        if self._cache and failed_months == 0:
             self._cache.save(cache_key, series)
+        elif failed_months:
+            logger.warning(
+                "Scopus counts for '%s' had %s failed months; result was not cached",
+                term,
+                failed_months,
+            )
 
         return series
+
+    def _scopus_get_with_retries(
+        self,
+        session: requests.Session,
+        url: str,
+        headers: dict[str, str],
+        params: dict[str, object],
+        timeout: float,
+        max_retries: int,
+        backoff_sec: float,
+        term: str,
+        month_key: str,
+    ) -> Optional[requests.Response]:
+        """GET Scopus with exponential backoff for transient API/network errors."""
+        retry_statuses = {408, 429, 500, 502, 503, 504}
+
+        for attempt in range(max_retries + 1):
+            try:
+                resp = session.get(
+                    url, headers=headers, params=params, timeout=timeout
+                )
+                if resp.status_code not in retry_statuses:
+                    return resp
+                if attempt >= max_retries:
+                    return resp
+
+                retry_after = resp.headers.get("Retry-After")
+                delay = self._retry_delay(retry_after, backoff_sec, attempt)
+                logger.warning(
+                    "Scopus returned HTTP %s for '%s' %s; retrying in %.1fs",
+                    resp.status_code,
+                    term,
+                    month_key,
+                    delay,
+                )
+            except requests.RequestException as exc:
+                if attempt >= max_retries:
+                    logger.warning(
+                        "Scopus query failed for '%s' %s after %s retries: %s",
+                        term,
+                        month_key,
+                        max_retries,
+                        exc,
+                    )
+                    return None
+
+                delay = backoff_sec * (2 ** attempt)
+                logger.warning(
+                    "Scopus query failed for '%s' %s: %s; retrying in %.1fs",
+                    term,
+                    month_key,
+                    exc,
+                    delay,
+                )
+
+            time.sleep(delay)
+
+        return None
+
+    @staticmethod
+    def _retry_delay(
+        retry_after: Optional[str],
+        backoff_sec: float,
+        attempt: int,
+    ) -> float:
+        if retry_after:
+            try:
+                return max(float(retry_after), backoff_sec)
+            except ValueError:
+                pass
+        return backoff_sec * (2 ** attempt)
 
     # ------------------------------------------------------------------
     # Semantic Scholar API  (backup)

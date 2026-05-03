@@ -10,6 +10,7 @@ import logging
 import os
 import pickle
 import tempfile
+import time
 from pathlib import Path
 from typing import Any
 
@@ -24,10 +25,12 @@ class CacheManager:
         cache_dir: str = "data/raw/",
         enabled: bool = True,
         refresh: bool = False,
+        reuse_recent_days: int = 7,
     ):
         self.cache_dir = Path(cache_dir)
         self.enabled = enabled
         self.refresh = refresh
+        self.reuse_recent_days = reuse_recent_days
         if self.enabled:
             self.cache_dir.mkdir(parents=True, exist_ok=True)
 
@@ -36,10 +39,18 @@ class CacheManager:
     # ------------------------------------------------------------------
 
     def exists(self, key: str) -> bool:
-        """Return True if a cached result exists for *key* and refresh is off."""
-        if not self.enabled or self.refresh:
+        """Return True when cached data can be reused for *key*."""
+        if not self.enabled:
             return False
-        return self._path(key).exists()
+
+        path = self._path(key)
+        if not path.exists():
+            return False
+
+        if self._is_recent(path):
+            return True
+
+        return not self.refresh
 
     def load(self, key: str) -> Any:
         """Load a previously cached object.  Raises FileNotFoundError if
@@ -80,3 +91,9 @@ class CacheManager:
         safe = key.replace("/", "_").replace("\\", "_").replace(" ", "_")
         safe = safe.replace(":", "_").replace("*", "_").replace("?", "_")
         return self.cache_dir / f"{safe}.pkl"
+
+    def _is_recent(self, path: Path) -> bool:
+        if self.reuse_recent_days <= 0:
+            return False
+        max_age_sec = self.reuse_recent_days * 24 * 60 * 60
+        return (time.time() - path.stat().st_mtime) <= max_age_sec
