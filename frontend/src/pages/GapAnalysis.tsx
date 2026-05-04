@@ -36,7 +36,7 @@ function gapCellColor(val: number) {
 
 export default function GapAnalysis() {
   const [category, setCategory] = useState<string>("all");
-  const [sortBy, setSortBy] = useState("gap_magnitude_2025");
+  const [sortBy, setSortBy] = useState("gap_magnitude_2027");
 
   const { data: categories } = useQuery<string[]>({
     queryKey: ["gap-categories"],
@@ -115,10 +115,10 @@ export default function GapAnalysis() {
           onChange={(e) => setSortBy(e.target.value)}
           className="ml-auto bg-[#1e293b] border border-[#334155] text-slate-300 text-sm rounded-lg px-3 py-1.5 outline-none"
         >
-          <option value="gap_magnitude_2025">Sort: Priority Score (2025)</option>
-          <option value="gap_2023">Sort: Gap in 2023</option>
-          <option value="gap_2024">Sort: Gap in 2024</option>
+          <option value="gap_magnitude_2027">Sort: Priority Score (2027)</option>
           <option value="gap_2025">Sort: Gap in 2025</option>
+          <option value="gap_2026">Sort: Gap in 2026</option>
+          <option value="gap_2027">Sort: Gap in 2027</option>
         </select>
       </div>
 
@@ -135,10 +135,10 @@ export default function GapAnalysis() {
                   className="text-center px-4 py-3"
                   title="Positive = defense ahead, negative = threat ahead"
                 >
-                  Gap 2023
+                  Gap 2025
                 </th>
-                <th className="text-center px-4 py-3">Gap 2024</th>
-                <th className="text-center px-4 py-3">Gap 2025</th>
+                <th className="text-center px-4 py-3">Gap 2026</th>
+                <th className="text-center px-4 py-3">Gap 2027</th>
                 <th
                   className="text-center px-4 py-3"
                   title="Higher = more urgent to address"
@@ -174,7 +174,7 @@ export default function GapAnalysis() {
                           {catInfo?.label ?? row.category}
                         </span>
                       </td>
-                      {(["gap_2023", "gap_2024", "gap_2025"] as const).map((k) => (
+                      {(["gap_2025", "gap_2026", "gap_2027"] as const).map((k) => (
                         <td key={k} className="px-4 py-2.5 text-center">
                           <span
                             className={`px-2 py-0.5 rounded text-xs font-mono ${gapCellColor(row[k])}`}
@@ -184,7 +184,7 @@ export default function GapAnalysis() {
                         </td>
                       ))}
                       <td className="px-4 py-2.5 text-center text-white font-mono text-xs font-semibold">
-                        {row.gap_magnitude_2025.toFixed(3)}
+                        {row.gap_magnitude_2027.toFixed(3)}
                       </td>
                     </tr>
                   );

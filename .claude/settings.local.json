@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c \"import json; d=json.load\\(open\\('C:/Users/imved/OneDrive/Desktop/ML_cp/CyberForesight/data/graph/tpt_graph.json'\\)\\); print\\('nodes:', len\\(d.get\\('nodes',[]\\)\\), 'edges:', len\\(d.get\\('edges',[]\\)\\), 'links:', len\\(d.get\\('links',[]\\)\\)\\)\")",
+      "Bash(python *)",
+      "Bash(copy *)",
+      "PowerShell(Copy-Item *)"
+    ]
+  }
+}

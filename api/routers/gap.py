@@ -10,7 +10,7 @@ router = APIRouter()
 @router.get("/")
 def get_gap(
     category: Optional[str] = Query(None),
-    sort_by: str = Query("gap_magnitude_2025"),
+    sort_by: str = Query("gap_magnitude_2027"),
     limit: int = Query(100),
 ):
     df = load_gap()
@@ -31,7 +31,7 @@ def get_categories():
 def get_top_gaps(n: int = Query(10)):
     df = load_gap()
     return (
-        df.sort_values("gap_magnitude_2025", ascending=False)
+        df.sort_values("gap_magnitude_2027", ascending=False)
         .head(n)
         .to_dict(orient="records")
     )

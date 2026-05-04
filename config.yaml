@@ -3,17 +3,17 @@ project:
   seed: 42
   start_date: "2011-07-01"
   end_date: "2026-04-01"
-  forecast_start: "2026-05-01"
+  forecast_start: "2025-01-01"
   forecast_end: "2027-12-01"
   data_dir: "data"
   output_dir: "outputs"
 
 api:
-  elsevier_key: "3a5d930281798b49fecd249d9eae9edc"
-  nvd_api_key: "647eb701-5f33-471e-8e26-2256799309fa"
-  acled_email: "bagrecha.mahi24@vit.edu"
+  elsevier_key: " 3a5d930281798b49fecd249d9eae9edc"
+  nvd_api_key: " 647eb701-5f33-471e-8e26-2256799309fa"
+  acled_email: " bagrecha.mahi24@vit.edu"
   acled_password: "12413200"
-  twitter_bearer: "AAAAAAAAAAAAAAAAAAAAAK2U9QEAAAAAi7Oesi15ftMTZUwlcHVYWjjHjbk%3DGetiUv6jsykVFUOaH4L2ykefdXOcOsfawgvCViPDtrQhiY1q1J"
+  twitter_bearer: " AAAAAAAAAAAAAAAAAAAAAK2U9QEAAAAAi7Oesi15ftMTZUwlcHVYWjjHjbk%3DGetiUv6jsykVFUOaH4L2ykefdXOcOsfawgvCViPDtrQhiY1q1J"
   openai_key: ""
   # Live connectors: when true, collectors attempt real API calls
   # before falling back to synthetic data.

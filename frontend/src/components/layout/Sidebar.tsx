@@ -47,7 +47,7 @@ export default function Sidebar() {
         ))}
       </nav>
       <div className="px-4 py-3 border-t border-[#334155] text-xs text-slate-500">
-        B-MTGNN · 2023–2025
+        B-MTGNN · 2025–2027
       </div>
     </aside>
   );

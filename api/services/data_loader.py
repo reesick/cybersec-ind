@@ -11,7 +11,7 @@ DATA_DIR = BASE_DIR / "data"
 
 @lru_cache(maxsize=None)
 def load_forecast() -> pd.DataFrame:
-    df = pd.read_csv(OUTPUTS_DIR / "forecast_2023_2025.csv")
+    df = pd.read_csv(OUTPUTS_DIR / "forecast_2025_2027.csv")
     df["month"] = pd.to_datetime(df["month"]).dt.strftime("%Y-%m-%d")
     return df
 

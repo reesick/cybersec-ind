@@ -89,7 +89,7 @@ export default function Overview() {
         <p className="text-slate-400 text-sm mt-1">
           AI-powered cyber threat forecasting using the B-MTGNN model — predicting
           research trends across 26 threats and 97 defense technologies from
-          2023 to 2025.
+          2025 to 2027.
         </p>
       </div>
 
@@ -129,7 +129,7 @@ export default function Overview() {
       <div className="bg-[#1e293b] border border-[#334155] rounded-xl p-5 space-y-3">
         <div>
           <h2 className="text-white font-semibold">
-            Most Researched Cyber Threats (Predicted 2023–2025)
+            Most Researched Cyber Threats (Predicted 2025–2027)
           </h2>
           <p className="text-slate-400 text-xs mt-0.5">
             Average number of academic publications per month predicted to

@@ -103,6 +103,18 @@ export default function Forecast() {
     queryFn: () => api.get("/forecast/nodes").then((r) => r.data),
   });
 
+  // Fetch all data for the selected node (no year filter) to derive available years
+  const { data: allNodeData } = useQuery<ForecastPoint[]>({
+    queryKey: ["forecast-all", selectedNode],
+    queryFn: () =>
+      api.get("/forecast/", { params: { node: selectedNode } }).then((r) => r.data),
+    enabled: !!selectedNode,
+  });
+
+  const availableYears = allNodeData
+    ? [...new Set(allNodeData.map((d) => new Date(d.month).getFullYear()))].sort()
+    : [];
+
   const { data: rawData, isLoading } = useQuery<ForecastPoint[]>({
     queryKey: ["forecast", selectedNode, year],
     queryFn: () =>
@@ -159,14 +171,17 @@ export default function Forecast() {
               </span>
             </div>
             <p className="text-slate-400 text-xs mt-0.5">
-              Predicted monthly research publications · 2023–2025
+              Predicted monthly research publications
+              {availableYears.length >= 2
+                ? ` · ${availableYears[0]}–${availableYears[availableYears.length - 1]}`
+                : ""}
             </p>
           </div>
           <div className="flex gap-2">
-            {([undefined, 2023, 2024, 2025] as const).map((y) => (
+            {[undefined, ...availableYears].map((y) => (
               <button
                 key={y ?? "all"}
-                onClick={() => setYear(y as number | undefined)}
+                onClick={() => setYear(y)}
                 className={`px-3 py-1 rounded-lg text-xs transition-colors ${
                   year === y
                     ? "bg-blue-600 text-white"

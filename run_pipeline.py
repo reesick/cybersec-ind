@@ -61,7 +61,7 @@ def _build_atc_phases(forecast_df: pd.DataFrame) -> pd.DataFrame:
 
 
 def _recommendations_pdf(df: pd.DataFrame, path: str):
-    top = df.head(20)[["threat", "pat", "gap_2023", "gap_2024", "gap_2025", "category"]]
+    top = df.head(20)[["threat", "pat", "gap_2025", "gap_2026", "gap_2027", "category"]]
     fig, ax = plt.subplots(figsize=(14, 7))
     ax.axis("off")
     tbl = ax.table(cellText=top.round(3).values, colLabels=top.columns, loc="center")
@@ -165,7 +165,7 @@ def main():
     x_last = x[-1:].clone()
     months = pd.date_range(cfg["project"]["forecast_start"], cfg["project"]["forecast_end"], freq="MS")
     fc = forecast_with_ci(model, x_last, nodes, months, mc_it=cfg["model"]["mc_iterations"])
-    fc.to_csv(root / "outputs" / "forecast_2023_2025.csv", index=False)
+    fc.to_csv(root / "outputs" / "forecast_2025_2027.csv", index=False)
 
     gap_df = compute_gap_report(fc)
     gap_df.to_csv(root / "outputs" / "gap_analysis_report.csv", index=False)
