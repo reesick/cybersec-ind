@@ -16,5 +16,5 @@ def build_recommendations(gap_df: pd.DataFrame) -> pd.DataFrame:
     out = gap_df.copy()
     out["priority"] = out["category"].map(PRIORITY)
     out["recommendation"] = out["category"].map(RECOMMEND)
-    out = out.sort_values(["priority", "gap_magnitude_2025"], ascending=[True, False])
+    out = out.sort_values(["priority", "gap_magnitude_2027"], ascending=[True, False])
     return out

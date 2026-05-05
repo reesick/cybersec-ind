@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import argparse
 from pathlib import Path
 
 import matplotlib.pyplot as plt
@@ -8,6 +9,7 @@ import pandas as pd
 import torch
 
 from src.constants import PAT_CODES, THREATS, THREAT_TYPE
+from src.data_collection.validator import validate_all_data
 from src.forecasting.forecast import forecast_with_ci
 from src.forecasting.gap_analysis import compute_gap_report
 from src.forecasting.recommendations import build_recommendations
@@ -59,7 +61,7 @@ def _build_atc_phases(forecast_df: pd.DataFrame) -> pd.DataFrame:
 
 
 def _recommendations_pdf(df: pd.DataFrame, path: str):
-    top = df.head(20)[["threat", "pat", "gap_2023", "gap_2024", "gap_2025", "category"]]
+    top = df.head(20)[["threat", "pat", "gap_2025", "gap_2026", "gap_2027", "category"]]
     fig, ax = plt.subplots(figsize=(14, 7))
     ax.axis("off")
     tbl = ax.table(cellText=top.round(3).values, colLabels=top.columns, loc="center")
@@ -71,23 +73,54 @@ def _recommendations_pdf(df: pd.DataFrame, path: str):
     plt.close()
 
 
+def parse_args():
+    parser = argparse.ArgumentParser(
+        description="Run the full B-MTGNN cyber-threat forecasting pipeline."
+    )
+    parser.add_argument(
+        "--refresh-cache",
+        action="store_true",
+        default=False,
+        help="Force re-download of all cached API data.",
+    )
+    return parser.parse_args()
+
+
 def main():
+    args = parse_args()
     root = Path(__file__).parent
     cfg = load_config(str(root / "config.yaml"))
     set_seed(cfg["project"]["seed"])
 
-    print("[Stage 1] Building monthly dataset...")
+    # Apply CLI overrides
+    if args.refresh_cache:
+        cfg.setdefault("cache", {})["refresh"] = True
+        print("[REFRESH] Cache refresh enabled -- all data will be re-downloaded")
+
+    use_live = cfg.get("api", {}).get("use_live_apis", False)
+    if use_live:
+        print("[LIVE] Live API mode ENABLED -- will attempt real data collection")
+    else:
+        print("[SYNTHETIC] Synthetic mode -- using generated data (set use_live_apis: true for real data)")
+
+    print("\n[Stage 1] Building monthly dataset...")
     df = build_monthly_dataset(cfg)
     save_dataset(df, str(root))
-    print("  dataset shape:", df.shape)
-    print("  month range:", df["month"].min(), "to", df["month"].max())
+    print(f"  dataset shape: {df.shape}")
+    print(f"  month range: {df['month'].min()} to {df['month'].max()}")
 
-    print("[Stage 2] Building TPT graph...")
+    # Validate collected data
+    print("\n[Validation] Checking data quality...")
+    issues = validate_all_data(df)
+    if issues:
+        print(f"  Found {len(issues)} warnings (non-fatal -- pipeline will continue)")
+
+    print("\n[Stage 2] Building TPT graph...")
     graph = build_tpt_graph(df)
     save_graph(graph, str(root))
     print("  nodes:", len(graph["nodes"]), "edges:", len(graph["edges"]))
 
-    print("[Stage 3] Training B-MTGNN...")
+    print("\n[Stage 3] Training B-MTGNN...")
     nodes = node_list()
     node_df = _align_node_matrix(df, nodes)
     values = node_df[nodes].values.astype(np.float32)
@@ -98,7 +131,7 @@ def main():
     best = random_search(cfg["search"], cfg["model"], train_set, val_set, len(nodes), tin, tout, str(root / "outputs"))
     print("  best params:", best["params"], "best val RSE:", round(best["score"], 4))
 
-    print("[Ablation] Running model variants and baselines...")
+    print("\n[Ablation] Running model variants and baselines...")
     ablation_df = run_ablation(train_set, val_set, len(nodes), tin, tout, cfg["model"])
     baseline_df = run_simple_baselines(train_set, val_set)
     pd.concat([ablation_df, baseline_df], ignore_index=True).to_csv(root / "outputs" / "ablation_and_baselines.csv", index=False)
@@ -128,11 +161,11 @@ def main():
         f"RSE={m['RSE']:.4f} RAE={m['RAE']:.4f} RMSE={m['RMSE']:.4f} R2={m['R2']:.4f}",
     )
 
-    print("[Stage 4] Forecasting and gap analysis...")
+    print("\n[Stage 4] Forecasting and gap analysis...")
     x_last = x[-1:].clone()
     months = pd.date_range(cfg["project"]["forecast_start"], cfg["project"]["forecast_end"], freq="MS")
     fc = forecast_with_ci(model, x_last, nodes, months, mc_it=cfg["model"]["mc_iterations"])
-    fc.to_csv(root / "outputs" / "forecast_2023_2025.csv", index=False)
+    fc.to_csv(root / "outputs" / "forecast_2025_2027.csv", index=False)
 
     gap_df = compute_gap_report(fc)
     gap_df.to_csv(root / "outputs" / "gap_analysis_report.csv", index=False)
@@ -141,12 +174,12 @@ def main():
     plot_threat_forecasts(fc, THREATS, str(root / "outputs" / "trend_plots"))
     print("  forecast rows:", len(fc), "gap rows:", len(gap_df))
 
-    print("[Stage 5] ATC analysis...")
+    print("\n[Stage 5] ATC analysis...")
     atc_df = _build_atc_phases(fc)
     atc_df.to_csv(root / "outputs" / "atc_phases.csv", index=False)
     plot_atc(atc_df, str(root / "outputs" / "atc_diagram.png"))
     print("  atc entries:", len(atc_df))
-    print("Done.")
+    print("\n[DONE] Pipeline complete.")
 
 
 if __name__ == "__main__":

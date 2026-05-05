@@ -1,0 +1,291 @@
+threat,pat,gap_2023,gap_2024,gap_2025,category,gap_magnitude_2025
+Account Hijacking,AC,0.0,0.0,0.0,ONG,0.0
+Account Hijacking,AD,0.0,0.0,0.0,ONG,0.0
+Account Hijacking,CAPTCHA,0.0,0.0,0.0,ONG,0.0
+Account Hijacking,CR,0.0,0.0,0.0,ONG,0.0
+Account Hijacking,IDS/IPS,0.0,0.0,0.0,ONG,0.0
+Account Hijacking,IdM,0.0,0.0,0.0,ONG,0.0
+Account Hijacking,LP,0.0,0.0,0.0,ONG,0.0
+Account Hijacking,MFA,0.0,0.0,0.0,ONG,0.0
+Account Hijacking,ML/DL,0.0,0.0,0.0,ONG,0.0
+Account Hijacking,NLP/LLM,0.0,0.0,0.0,ONG,0.0
+Account Hijacking,PT,0.0,0.0,0.0,ONG,0.0
+Account Hijacking,SM,0.0,0.0,0.0,ONG,0.0
+Adversarial Attack,AD,0.0,0.0,0.0,ONG,0.0
+Adversarial Attack,AdT,0.0,0.0,0.0,ONG,0.0
+Adversarial Attack,BN,0.0,0.0,0.0,ONG,0.0
+Adversarial Attack,DA,0.0,0.0,0.0,ONG,0.0
+Adversarial Attack,DD,0.0,0.0,0.0,ONG,0.0
+Adversarial Attack,DP,0.0,0.0,0.0,ONG,0.0
+Adversarial Attack,DR,0.0,0.0,0.0,ONG,0.0
+Adversarial Attack,DS,0.0,0.0,0.0,ONG,0.0
+Adversarial Attack,ML/DL,0.0,0.0,0.0,ONG,0.0
+Adversarial Attack,NI,0.0,0.0,0.0,ONG,0.0
+Adversarial Attack,NLP/LLM,0.0,0.0,0.0,ONG,0.0
+Adversarial Attack,OD,0.0,0.0,0.0,ONG,0.0
+Adversarial Attack,RRAM,0.0,0.0,0.0,ONG,0.0
+Adversarial Attack,SS,0.0,0.0,0.0,ONG,0.0
+Adversarial Attack,TAI,0.0,0.0,0.0,ONG,0.0
+APT,AC,0.0,0.0,0.0,ONG,0.0
+APT,DLP,0.0,0.0,0.0,ONG,0.0
+APT,DRM,0.0,0.0,0.0,ONG,0.0
+APT,DT,0.0,0.0,0.0,ONG,0.0
+APT,GT,0.0,0.0,0.0,ONG,0.0
+APT,IDS/IPS,0.0,0.0,0.0,ONG,0.0
+APT,LP,0.0,0.0,0.0,ONG,0.0
+APT,MFA,0.0,0.0,0.0,ONG,0.0
+APT,ML/DL,0.0,0.0,0.0,ONG,0.0
+APT,NLP/LLM,0.0,0.0,0.0,ONG,0.0
+APT,NS,0.0,0.0,0.0,ONG,0.0
+APT,PT,0.0,0.0,0.0,ONG,0.0
+APT,RA,0.0,0.0,0.0,ONG,0.0
+APT,UBA,0.0,0.0,0.0,ONG,0.0
+Backdoor,AD,0.0,0.0,0.0,ONG,0.0
+Backdoor,DAS,0.0,0.0,0.0,ONG,0.0
+Backdoor,IDS/IPS,0.0,0.0,0.0,ONG,0.0
+Backdoor,ML/DL,0.0,0.0,0.0,ONG,0.0
+Backdoor,PT,0.0,0.0,0.0,ONG,0.0
+Backdoor,SA,0.0,0.0,0.0,ONG,0.0
+Botnet,AD,0.0,0.0,0.0,ONG,0.0
+Botnet,BC,0.0,0.0,0.0,ONG,0.0
+Botnet,BH,0.0,0.0,0.0,ONG,0.0
+Botnet,BT,0.0,0.0,0.0,ONG,0.0
+Botnet,CAPTCHA,0.0,0.0,0.0,ONG,0.0
+Botnet,GM,0.0,0.0,0.0,ONG,0.0
+Botnet,GT,0.0,0.0,0.0,ONG,0.0
+Botnet,HP,0.0,0.0,0.0,ONG,0.0
+Botnet,IDS/IPS,0.0,0.0,0.0,ONG,0.0
+Botnet,ML/DL,0.0,0.0,0.0,ONG,0.0
+Botnet,NLP/LLM,0.0,0.0,0.0,ONG,0.0
+Botnet,PF,0.0,0.0,0.0,ONG,0.0
+Botnet,PT,0.0,0.0,0.0,ONG,0.0
+Botnet,RC,0.0,0.0,0.0,ONG,0.0
+Botnet,RL,0.0,0.0,0.0,ONG,0.0
+Botnet,SDN,0.0,0.0,0.0,ONG,0.0
+Botnet,TS,0.0,0.0,0.0,ONG,0.0
+Brute Force Attack,CAPTCHA,0.0,0.0,0.0,ONG,0.0
+Brute Force Attack,CR,0.0,0.0,0.0,ONG,0.0
+Brute Force Attack,DBI,0.0,0.0,0.0,ONG,0.0
+Brute Force Attack,IDS/IPS,0.0,0.0,0.0,ONG,0.0
+Brute Force Attack,MFA,0.0,0.0,0.0,ONG,0.0
+Brute Force Attack,ML/DL,0.0,0.0,0.0,ONG,0.0
+Brute Force Attack,OTP,0.0,0.0,0.0,ONG,0.0
+Brute Force Attack,PH,0.0,0.0,0.0,ONG,0.0
+Brute Force Attack,PT,0.0,0.0,0.0,ONG,0.0
+Cryptojacking,BT,0.0,0.0,0.0,ONG,0.0
+Cryptojacking,ML/DL,0.0,0.0,0.0,ONG,0.0
+Cryptojacking,PT,0.0,0.0,0.0,ONG,0.0
+Cryptojacking,TA,0.0,0.0,0.0,ONG,0.0
+DDoS,BC,0.0,0.0,0.0,ONG,0.0
+DDoS,BH,0.0,0.0,0.0,ONG,0.0
+DDoS,BT,0.0,0.0,0.0,ONG,0.0
+DDoS,IDS/IPS,0.0,0.0,0.0,ONG,0.0
+DDoS,ML/DL,0.0,0.0,0.0,ONG,0.0
+DDoS,NLP/LLM,0.0,0.0,0.0,ONG,0.0
+DDoS,PF,0.0,0.0,0.0,ONG,0.0
+DDoS,PT,0.0,0.0,0.0,ONG,0.0
+DDoS,RC,0.0,0.0,0.0,ONG,0.0
+DDoS,RL,0.0,0.0,0.0,ONG,0.0
+DDoS,TS,0.0,0.0,0.0,ONG,0.0
+Data Poisoning,AD,0.0,0.0,0.0,ONG,0.0
+Data Poisoning,AdT,0.0,0.0,0.0,ONG,0.0
+Data Poisoning,BN,0.0,0.0,0.0,ONG,0.0
+Data Poisoning,DP,0.0,0.0,0.0,ONG,0.0
+Data Poisoning,DS,0.0,0.0,0.0,ONG,0.0
+Data Poisoning,ML/DL,0.0,0.0,0.0,ONG,0.0
+Data Poisoning,NLP/LLM,0.0,0.0,0.0,ONG,0.0
+Data Poisoning,OD,0.0,0.0,0.0,ONG,0.0
+Data Poisoning,TAI,0.0,0.0,0.0,ONG,0.0
+Deepfake,3DFR,0.0,0.0,0.0,ONG,0.0
+Deepfake,AD,0.0,0.0,0.0,ONG,0.0
+Deepfake,BO,0.0,0.0,0.0,ONG,0.0
+Deepfake,DW,0.0,0.0,0.0,ONG,0.0
+Deepfake,LD,0.0,0.0,0.0,ONG,0.0
+Deepfake,ML/DL,0.0,0.0,0.0,ONG,0.0
+Deepfake,NLP/LLM,0.0,0.0,0.0,ONG,0.0
+Disinformation,BC,0.0,0.0,0.0,ONG,0.0
+Disinformation,CA,0.0,0.0,0.0,ONG,0.0
+Disinformation,DLT,0.0,0.0,0.0,ONG,0.0
+Disinformation,DP,0.0,0.0,0.0,ONG,0.0
+Disinformation,DT,0.0,0.0,0.0,ONG,0.0
+Disinformation,GT,0.0,0.0,0.0,ONG,0.0
+Disinformation,HG,0.0,0.0,0.0,ONG,0.0
+Disinformation,IR,0.0,0.0,0.0,ONG,0.0
+Disinformation,ML/DL,0.0,0.0,0.0,ONG,0.0
+Disinformation,NLP/LLM,0.0,0.0,0.0,ONG,0.0
+Disinformation,SI,0.0,0.0,0.0,ONG,0.0
+DNS Spoofing,BC,0.0,0.0,0.0,ONG,0.0
+DNS Spoofing,CR,0.0,0.0,0.0,ONG,0.0
+DNS Spoofing,DNSSEC,0.0,0.0,0.0,ONG,0.0
+DNS Spoofing,ML/DL,0.0,0.0,0.0,ONG,0.0
+DNS Spoofing,PT,0.0,0.0,0.0,ONG,0.0
+DNS Spoofing,RA,0.0,0.0,0.0,ONG,0.0
+Dropper,AW,0.0,0.0,0.0,ONG,0.0
+Dropper,CS,0.0,0.0,0.0,ONG,0.0
+Dropper,FIM,0.0,0.0,0.0,ONG,0.0
+Dropper,IDS/IPS,0.0,0.0,0.0,ONG,0.0
+Dropper,ML/DL,0.0,0.0,0.0,ONG,0.0
+Dropper,NLP/LLM,0.0,0.0,0.0,ONG,0.0
+Dropper,PT,0.0,0.0,0.0,ONG,0.0
+Dropper,SBX,0.0,0.0,0.0,ONG,0.0
+Insider Threat,AC,0.0,0.0,0.0,ONG,0.0
+Insider Threat,AD,0.0,0.0,0.0,ONG,0.0
+Insider Threat,AM,0.0,0.0,0.0,ONG,0.0
+Insider Threat,AT,0.0,0.0,0.0,ONG,0.0
+Insider Threat,CR,0.0,0.0,0.0,ONG,0.0
+Insider Threat,DLD,0.0,0.0,0.0,ONG,0.0
+Insider Threat,IDS/IPS,0.0,0.0,0.0,ONG,0.0
+Insider Threat,KD,0.0,0.0,0.0,ONG,0.0
+Insider Threat,LP,0.0,0.0,0.0,ONG,0.0
+Insider Threat,ML/DL,0.0,0.0,0.0,ONG,0.0
+Insider Threat,MTD,0.0,0.0,0.0,ONG,0.0
+Insider Threat,NLP/LLM,0.0,0.0,0.0,ONG,0.0
+Insider Threat,PT,0.0,0.0,0.0,ONG,0.0
+Insider Threat,UBA,0.0,0.0,0.0,ONG,0.0
+IoT Device Attack,AD,0.0,0.0,0.0,ONG,0.0
+IoT Device Attack,BC,0.0,0.0,0.0,ONG,0.0
+IoT Device Attack,CR,0.0,0.0,0.0,ONG,0.0
+IoT Device Attack,IDS/IPS,0.0,0.0,0.0,ONG,0.0
+IoT Device Attack,IdM,0.0,0.0,0.0,ONG,0.0
+IoT Device Attack,MFA,0.0,0.0,0.0,ONG,0.0
+IoT Device Attack,ML/DL,0.0,0.0,0.0,ONG,0.0
+IoT Device Attack,MS,0.0,0.0,0.0,ONG,0.0
+IoT Device Attack,PT,0.0,0.0,0.0,ONG,0.0
+IoT Device Attack,SB,0.0,0.0,0.0,ONG,0.0
+Malware,AC,0.0,0.0,0.0,ONG,0.0
+Malware,AD,0.0,0.0,0.0,ONG,0.0
+Malware,AW,0.0,0.0,0.0,ONG,0.0
+Malware,BBD,0.0,0.0,0.0,ONG,0.0
+Malware,BC,0.0,0.0,0.0,ONG,0.0
+Malware,CR,0.0,0.0,0.0,ONG,0.0
+Malware,CS,0.0,0.0,0.0,ONG,0.0
+Malware,DAS,0.0,0.0,0.0,ONG,0.0
+Malware,DB,0.0,0.0,0.0,ONG,0.0
+Malware,DM,0.0,0.0,0.0,ONG,0.0
+Malware,DT,0.0,0.0,0.0,ONG,0.0
+Malware,FIM,0.0,0.0,0.0,ONG,0.0
+Malware,FV,0.0,0.0,0.0,ONG,0.0
+Malware,GT,0.0,0.0,0.0,ONG,0.0
+Malware,HP,0.0,0.0,0.0,ONG,0.0
+Malware,IDS/IPS,0.0,0.0,0.0,ONG,0.0
+Malware,ML/DL,0.0,0.0,0.0,ONG,0.0
+Malware,NLP/LLM,0.0,0.0,0.0,ONG,0.0
+Malware,PMT,0.0,0.0,0.0,ONG,0.0
+Malware,PT,0.0,0.0,0.0,ONG,0.0
+Malware,SA,0.0,0.0,0.0,ONG,0.0
+Malware,SB,0.0,0.0,0.0,ONG,0.0
+Malware,SBX,0.0,0.0,0.0,ONG,0.0
+Malware,SHMM,0.0,0.0,0.0,ONG,0.0
+Malware,SMF,0.0,0.0,0.0,ONG,0.0
+Malware,VK,0.0,0.0,0.0,ONG,0.0
+MITM,BC,0.0,0.0,0.0,ONG,0.0
+MITM,CAPTCHA,0.0,0.0,0.0,ONG,0.0
+MITM,CP,0.0,0.0,0.0,ONG,0.0
+MITM,CR,0.0,0.0,0.0,ONG,0.0
+MITM,ML/DL,0.0,0.0,0.0,ONG,0.0
+MITM,PKI,0.0,0.0,0.0,ONG,0.0
+MITM,PT,0.0,0.0,0.0,ONG,0.0
+MITM,SSL/TLS,0.0,0.0,0.0,ONG,0.0
+MITM,SSP,0.0,0.0,0.0,ONG,0.0
+MITM,VPN,0.0,0.0,0.0,ONG,0.0
+Password Attack,CAPTCHA,0.0,0.0,0.0,ONG,0.0
+Password Attack,CR,0.0,0.0,0.0,ONG,0.0
+Password Attack,GA,0.0,0.0,0.0,ONG,0.0
+Password Attack,IDS/IPS,0.0,0.0,0.0,ONG,0.0
+Password Attack,MA,0.0,0.0,0.0,ONG,0.0
+Password Attack,MFA,0.0,0.0,0.0,ONG,0.0
+Password Attack,ML/DL,0.0,0.0,0.0,ONG,0.0
+Password Attack,NLP/LLM,0.0,0.0,0.0,ONG,0.0
+Password Attack,OTP,0.0,0.0,0.0,ONG,0.0
+Password Attack,PH,0.0,0.0,0.0,ONG,0.0
+Password Attack,PM,0.0,0.0,0.0,ONG,0.0
+Password Attack,PP,0.0,0.0,0.0,ONG,0.0
+Password Attack,PSM,0.0,0.0,0.0,ONG,0.0
+Password Attack,PT,0.0,0.0,0.0,ONG,0.0
+Phishing,AC,0.0,0.0,0.0,ONG,0.0
+Phishing,BT,0.0,0.0,0.0,ONG,0.0
+Phishing,CR,0.0,0.0,0.0,ONG,0.0
+Phishing,DT,0.0,0.0,0.0,ONG,0.0
+Phishing,MA,0.0,0.0,0.0,ONG,0.0
+Phishing,MFA,0.0,0.0,0.0,ONG,0.0
+Phishing,ML/DL,0.0,0.0,0.0,ONG,0.0
+Phishing,NLP/LLM,0.0,0.0,0.0,ONG,0.0
+Phishing,PKI,0.0,0.0,0.0,ONG,0.0
+Ransomware,AC,0.0,0.0,0.0,ONG,0.0
+Ransomware,AD,0.0,0.0,0.0,ONG,0.0
+Ransomware,AW,0.0,0.0,0.0,ONG,0.0
+Ransomware,BC,0.0,0.0,0.0,ONG,0.0
+Ransomware,CR,0.0,0.0,0.0,ONG,0.0
+Ransomware,DAS,0.0,0.0,0.0,ONG,0.0
+Ransomware,DB,0.0,0.0,0.0,ONG,0.0
+Ransomware,DT,0.0,0.0,0.0,ONG,0.0
+Ransomware,IDS/IPS,0.0,0.0,0.0,ONG,0.0
+Ransomware,ML/DL,0.0,0.0,0.0,ONG,0.0
+Ransomware,NLP/LLM,0.0,0.0,0.0,ONG,0.0
+Ransomware,PMT,0.0,0.0,0.0,ONG,0.0
+Ransomware,PT,0.0,0.0,0.0,ONG,0.0
+Ransomware,SA,0.0,0.0,0.0,ONG,0.0
+Ransomware,SHMM,0.0,0.0,0.0,ONG,0.0
+Session Hijacking,AD,0.0,0.0,0.0,ONG,0.0
+Session Hijacking,CA,0.0,0.0,0.0,ONG,0.0
+Session Hijacking,CR,0.0,0.0,0.0,ONG,0.0
+Session Hijacking,Https,0.0,0.0,0.0,ONG,0.0
+Session Hijacking,IBE,0.0,0.0,0.0,ONG,0.0
+Session Hijacking,ML/DL,0.0,0.0,0.0,ONG,0.0
+Session Hijacking,PT,0.0,0.0,0.0,ONG,0.0
+Session Hijacking,SAT,0.0,0.0,0.0,ONG,0.0
+Session Hijacking,SM,0.0,0.0,0.0,ONG,0.0
+Session Hijacking,SSL/TLS,0.0,0.0,0.0,ONG,0.0
+Supply Chain Attack,AC,0.0,0.0,0.0,ONG,0.0
+Supply Chain Attack,AD,0.0,0.0,0.0,ONG,0.0
+Supply Chain Attack,BC,0.0,0.0,0.0,ONG,0.0
+Supply Chain Attack,CR,0.0,0.0,0.0,ONG,0.0
+Supply Chain Attack,IdM,0.0,0.0,0.0,ONG,0.0
+Supply Chain Attack,ML/DL,0.0,0.0,0.0,ONG,0.0
+Supply Chain Attack,NLP/LLM,0.0,0.0,0.0,ONG,0.0
+Supply Chain Attack,PT,0.0,0.0,0.0,ONG,0.0
+Supply Chain Attack,SCRM,0.0,0.0,0.0,ONG,0.0
+Targeted Attack,AC,0.0,0.0,0.0,ONG,0.0
+Targeted Attack,DRM,0.0,0.0,0.0,ONG,0.0
+Targeted Attack,DT,0.0,0.0,0.0,ONG,0.0
+Targeted Attack,GT,0.0,0.0,0.0,ONG,0.0
+Targeted Attack,IDS/IPS,0.0,0.0,0.0,ONG,0.0
+Targeted Attack,LP,0.0,0.0,0.0,ONG,0.0
+Targeted Attack,MFA,0.0,0.0,0.0,ONG,0.0
+Targeted Attack,ML/DL,0.0,0.0,0.0,ONG,0.0
+Targeted Attack,NLP/LLM,0.0,0.0,0.0,ONG,0.0
+Targeted Attack,NS,0.0,0.0,0.0,ONG,0.0
+Targeted Attack,PT,0.0,0.0,0.0,ONG,0.0
+Targeted Attack,RA,0.0,0.0,0.0,ONG,0.0
+Targeted Attack,UBA,0.0,0.0,0.0,ONG,0.0
+Trojan,AD,0.0,0.0,0.0,ONG,0.0
+Trojan,BBD,0.0,0.0,0.0,ONG,0.0
+Trojan,CR,0.0,0.0,0.0,ONG,0.0
+Trojan,FV,0.0,0.0,0.0,ONG,0.0
+Trojan,GT,0.0,0.0,0.0,ONG,0.0
+Trojan,IDS/IPS,0.0,0.0,0.0,ONG,0.0
+Trojan,ML/DL,0.0,0.0,0.0,ONG,0.0
+Trojan,NLP/LLM,0.0,0.0,0.0,ONG,0.0
+Trojan,PT,0.0,0.0,0.0,ONG,0.0
+Trojan,SMF,0.0,0.0,0.0,ONG,0.0
+Vulnerability,CFI,0.0,0.0,0.0,ONG,0.0
+Vulnerability,IDS/IPS,0.0,0.0,0.0,ONG,0.0
+Vulnerability,ML/DL,0.0,0.0,0.0,ONG,0.0
+Vulnerability,NLP/LLM,0.0,0.0,0.0,ONG,0.0
+Vulnerability,PMT,0.0,0.0,0.0,ONG,0.0
+Vulnerability,PT,0.0,0.0,0.0,ONG,0.0
+Vulnerability,SC,0.0,0.0,0.0,ONG,0.0
+Vulnerability,SIEM,0.0,0.0,0.0,ONG,0.0
+Vulnerability,VA,0.0,0.0,0.0,ONG,0.0
+Vulnerability,VM,0.0,0.0,0.0,ONG,0.0
+Vulnerability,VS,0.0,0.0,0.0,ONG,0.0
+Zero-day,AD,0.0,0.0,0.0,ONG,0.0
+Zero-day,DT,0.0,0.0,0.0,ONG,0.0
+Zero-day,FIM,0.0,0.0,0.0,ONG,0.0
+Zero-day,GT,0.0,0.0,0.0,ONG,0.0
+Zero-day,IDS/IPS,0.0,0.0,0.0,ONG,0.0
+Zero-day,ML/DL,0.0,0.0,0.0,ONG,0.0
+Zero-day,NLP/LLM,0.0,0.0,0.0,ONG,0.0
+Zero-day,PrP,0.0,0.0,0.0,ONG,0.0
+Zero-day,VM,0.0,0.0,0.0,ONG,0.0
+Zero-day,VPN,0.0,0.0,0.0,ONG,0.0

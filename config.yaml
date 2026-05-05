@@ -2,18 +2,50 @@
 project:
   seed: 42
   start_date: "2011-07-01"
-  end_date: "2022-12-01"
-  forecast_start: "2023-01-01"
-  forecast_end: "2025-12-01"
+  end_date: "2026-04-01"
+  forecast_start: "2025-01-01"
+  forecast_end: "2027-12-01"
   data_dir: "data"
   output_dir: "outputs"
 
 api:
-  elsevier_key: ""
-  twitter_bearer: ""
+  elsevier_key: " 3a5d930281798b49fecd249d9eae9edc"
+  nvd_api_key: " 647eb701-5f33-471e-8e26-2256799309fa"
+  acled_email: " bagrecha.mahi24@vit.edu"
+  acled_password: "12413200"
+  twitter_bearer: " AAAAAAAAAAAAAAAAAAAAAK2U9QEAAAAAi7Oesi15ftMTZUwlcHVYWjjHjbk%3DGetiUv6jsykVFUOaH4L2ykefdXOcOsfawgvCViPDtrQhiY1q1J"
   openai_key: ""
-  # Live connectors (Elsevier/Twitter/Hackmageddon) are not fully wired yet; when false, synthetic data is used without warnings.
-  use_live_apis: false
+  # Live connectors: when true, collectors attempt real API calls
+  # before falling back to synthetic data.
+  use_live_apis: true
+
+# Per-API settings
+apis:
+  elsevier:
+    enabled: true
+    rate_limit_sleep: 0.2 # seconds between requests (5 req/sec free tier)
+
+  semantic_scholar:
+    enabled: true # backup for elsevier
+    rate_limit_sleep: 3.0 # seconds between requests (100 req/5 min)
+
+  acled:
+    enabled: true
+    email: "" # user fills this in config.local.yaml
+
+  nvd:
+    enabled: true
+    rate_limit_sleep: 0.6 # seconds between requests (50 req/30 sec)
+
+  hackmageddon:
+    enabled: true # bonus scraper — fragile
+
+# Caching layer
+cache:
+  enabled: true
+  refresh: false # set true to re-download everything
+  reuse_recent_days: 7 # reuse API cache newer than this, even during refresh
+  path: "data/raw/"
 
 model:
   tin: 10
