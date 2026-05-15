@@ -33,7 +33,7 @@ const METRIC_INFO: Record<
     full: "Root Mean Square Error",
     good: "low",
     explain:
-      "Average prediction error in the original unit (papers per month). 224 papers/month error across a dataset with thousands of papers/month is very low.",
+      "Average prediction error. An RMSE of 224 across a dataset spanning thousands of publications is very low, indicating high model accuracy.",
   },
   R2: {
     full: "R² Score (Coefficient of Determination)",

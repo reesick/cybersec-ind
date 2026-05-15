@@ -4,7 +4,13 @@
       "Bash(python -c \"import json; d=json.load\\(open\\('C:/Users/imved/OneDrive/Desktop/ML_cp/CyberForesight/data/graph/tpt_graph.json'\\)\\); print\\('nodes:', len\\(d.get\\('nodes',[]\\)\\), 'edges:', len\\(d.get\\('edges',[]\\)\\), 'links:', len\\(d.get\\('links',[]\\)\\)\\)\")",
       "Bash(python *)",
       "Bash(copy *)",
-      "PowerShell(Copy-Item *)"
+      "PowerShell(Copy-Item *)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\imved\\\\OneDrive\\\\Desktop\\\\ML_cp\\\\CyberForesight\" -Force)",
+      "Bash(Select-Object Name, Mode)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\imved\\\\OneDrive\\\\Desktop\\\\ML_cp\\\\CyberForesight\\\\api\" -Recurse -Force)",
+      "Bash(Select-Object FullName, Mode)",
+      "Bash(Format-Table)",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\imved\\\\OneDrive\\\\Desktop\\\\ML_cp\\\\CyberForesight\" -Force | Where-Object {$_.Name -notlike \".git\" -and $_.Name -notlike \".claude\"} | Select-Object Name)"
     ]
   }
 }

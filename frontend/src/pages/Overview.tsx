@@ -120,7 +120,7 @@ export default function Overview() {
           icon={Activity}
           label="Avg Prediction Error"
           value={validation ? validation.RMSE.toFixed(1) : "—"}
-          sub="papers/month (RMSE)"
+          sub="RMSE"
           color="bg-purple-500/20 text-purple-400"
         />
       </div>
@@ -166,15 +166,15 @@ export default function Overview() {
               labelStyle={{ color: "#e2e8f0" }}
               itemStyle={{ color: "#94a3b8" }}
               formatter={(val: number) => [
-                `${val.toFixed(2)} papers/month`,
+                `${val.toFixed(2)}`,
                 "Avg Predicted Volume",
               ]}
             />
             <Legend
               verticalAlign="top"
-              formatter={() => "Avg predicted papers/month"}
+              formatter={() => "Avg predicted volume"}
             />
-            <Bar dataKey="avg_pred" name="Avg predicted papers/month" radius={[0, 4, 4, 0]}>
+            <Bar dataKey="avg_pred" name="Avg predicted volume" radius={[0, 4, 4, 0]}>
               {topThreats.map((_, i) => (
                 <Cell
                   key={i}

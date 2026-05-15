@@ -1,0 +1,17 @@
+2024-03-15 23:00:00 192.168.1.200 GET /index.html HTTP/1.1 200 2048
+2024-03-15 23:01:00 192.168.1.200 GET /api/user/profile HTTP/1.1 200 512
+2024-03-15 23:02:10 192.168.1.200 POST /api/export/customers HTTP/1.1 200 15728640
+2024-03-15 23:02:12 netflow: outbound 192.168.1.200 -> 203.0.113.99:443 bytes_sent=15728640 large transfer detected
+2024-03-15 23:02:15 192.168.1.200 POST /api/export/orders HTTP/1.1 200 52428800
+2024-03-15 23:02:17 netflow: outbound 192.168.1.200 -> 203.0.113.99:443 bytes_sent=52428800 unusual outbound transfer
+2024-03-15 23:02:20 DLP: sensitive data detected in outbound traffic - data_out=62914560 bytes to external IP 203.0.113.99
+2024-03-15 23:02:22 DNS: dns_query for data.2a3b4c5d.tunnel.203.0.113.tk from 192.168.1.200 (DNS tunnel suspected)
+2024-03-15 23:02:24 DNS: dns_query for cmd.exec.203.0.113.ml (unusual TLD .ml - possible DNS tunneling)
+2024-03-15 23:02:26 DLP: egress alert - outbound traffic volume exceeded threshold: 104857600 bytes in 3 minutes
+2024-03-15 23:02:28 netflow: 192.168.1.200 transferred 100 megabytes to external host 203.0.113.99 (data exfiltration suspected)
+2024-03-15 23:02:30 192.168.1.200 PUT /api/backup HTTP/1.1 200 83886080
+2024-03-15 23:02:32 DLP: sensitive data leaked - customer PII detected in outbound stream to 203.0.113.99
+2024-03-15 23:02:34 netflow: outbound blocked - egress filter triggered for host 192.168.1.200 (data_out threshold exceeded)
+2024-03-15 23:02:36 SIEM: data exfiltration alert - 192.168.1.200 uploaded 157286400 bytes to external endpoint in 30 seconds
+2024-03-15 23:02:38 SIEM: unusual data transfer detected - gigabytes sent to untrusted external IP 203.0.113.99
+2024-03-15 23:03:00 192.168.1.1 GET /health HTTP/1.1 200 64

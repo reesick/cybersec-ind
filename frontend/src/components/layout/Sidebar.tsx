@@ -6,6 +6,7 @@ import {
   Images,
   Lightbulb,
   Network,
+  ScanSearch,
 } from "lucide-react";
 import { NavLink } from "react-router-dom";
 
@@ -17,6 +18,7 @@ const NAV = [
   { to: "/atc", icon: Lightbulb, label: "Lifecycle & Recs" },
   { to: "/gallery", icon: Images, label: "Trend Gallery" },
   { to: "/metrics", icon: Activity, label: "Model Metrics" },
+  { to: "/log-analysis", icon: ScanSearch, label: "Log Analysis" },
 ];
 
 export default function Sidebar() {
@@ -47,7 +49,7 @@ export default function Sidebar() {
         ))}
       </nav>
       <div className="px-4 py-3 border-t border-[#334155] text-xs text-slate-500">
-        B-MTGNN · 2025–2027
+        B-MTGNN | 2025-2027
       </div>
     </aside>
   );

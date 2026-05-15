@@ -1,0 +1,22 @@
+2024-03-15 14:00:01 192.168.1.100 GET /index.html HTTP/1.1 200 2048
+2024-03-15 14:00:10 203.0.113.77 GET /products?id=1 HTTP/1.1 200 1024
+2024-03-15 14:00:12 203.0.113.77 GET /products?id=1 OR 1=1-- HTTP/1.1 200 51200
+2024-03-15 14:00:14 203.0.113.77 GET /products?id=1' OR '1'='1 HTTP/1.1 500 256
+2024-03-15 14:00:16 203.0.113.77 GET "/search?q=shoes' UNION SELECT username,password FROM users--" HTTP/1.1 200 8192
+2024-03-15 14:00:18 203.0.113.77 GET "/search?q=test' UNION SELECT table_name,2 FROM INFORMATION_SCHEMA.TABLES--" HTTP/1.1 200 16384
+2024-03-15 14:00:20 203.0.113.77 GET "/login?user=admin'--&pass=anything" HTTP/1.1 200 2048
+2024-03-15 14:00:22 203.0.113.77 GET "/products?id=1; DROP TABLE users--" HTTP/1.1 500 128
+2024-03-15 14:00:24 203.0.113.77 GET "/api/users?filter=1 AND SLEEP(5)--" HTTP/1.1 200 64
+2024-03-15 14:00:26 203.0.113.77 POST /api/comment HTTP/1.1 200 128 body="<script>alert(1)</script>'; INSERT INTO comments SELECT * FROM users--"
+2024-03-15 14:00:28 203.0.113.77 GET "/api/data?id=1 AND BENCHMARK(1000000,MD5(1))--" HTTP/1.1 200 64
+2024-03-15 14:00:30 203.0.113.77 GET "/search?q=1' AND (SELECT SUBSTRING(password,1,1) FROM users WHERE username='admin')='a'--" HTTP/1.1 200 128
+2024-03-15 14:00:32 203.0.113.77 GET "/api/export?query=SELECT * FROM orders; EXEC xp_cmdshell('whoami')" HTTP/1.1 500 256
+2024-03-15 14:00:34 203.0.113.77 GET "/products?category=' OR 1=1 WAITFOR DELAY '0:0:5'--" HTTP/1.1 200 4096
+2024-03-15 14:00:36 203.0.113.77 GET "/api/file?name=../../etc/passwd" HTTP/1.1 200 1024
+2024-03-15 14:00:38 203.0.113.77 GET "/search?q='; INSERT INTO users(name,pass) VALUES('hacker','h4x0r')--" HTTP/1.1 500 128
+2024-03-15 14:00:40 203.0.113.77 GET "/products?id=1 UNION SELECT username,password,3 FROM users LIMIT 1 OFFSET 0--" HTTP/1.1 200 512
+2024-03-15 14:00:42 WAF: SQL Injection attempt blocked from 203.0.113.77 - pattern matched: UNION SELECT
+2024-03-15 14:00:44 WAF: SQL Injection attempt blocked from 203.0.113.77 - pattern matched: INFORMATION_SCHEMA
+2024-03-15 14:00:46 WAF: SQL Injection attempt blocked from 203.0.113.77 - pattern matched: xp_cmdshell
+2024-03-15 14:01:00 192.168.1.200 GET /products HTTP/1.1 200 8192
+2024-03-15 14:01:05 192.168.1.200 GET /products/42 HTTP/1.1 200 2048

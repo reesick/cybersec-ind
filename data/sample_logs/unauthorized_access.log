@@ -1,0 +1,24 @@
+2024-03-15 10:00:00 192.168.1.100 GET /index.html HTTP/1.1 200 2048
+2024-03-15 10:01:12 203.0.113.22 GET /admin HTTP/1.1 403 Forbidden - unauthorized access attempt
+2024-03-15 10:01:14 203.0.113.22 GET /wp-admin HTTP/1.1 403 Forbidden - unauthorized access attempt
+2024-03-15 10:01:15 203.0.113.22 GET /phpmyadmin HTTP/1.1 403 Forbidden - access forbidden
+2024-03-15 10:01:16 203.0.113.22 GET /.env HTTP/1.1 403 Forbidden - unauthorized access to /secrets
+2024-03-15 10:01:17 203.0.113.22 GET /config/database.yml HTTP/1.1 403 Forbidden - access to /config not allowed
+2024-03-15 10:01:18 203.0.113.22 GET /etc/passwd HTTP/1.1 403 Forbidden
+2024-03-15 10:01:19 203.0.113.22 GET /../../etc/passwd HTTP/1.1 400 Bad Request - directory traversal detected
+2024-03-15 10:01:20 203.0.113.22 GET /../../../etc/shadow HTTP/1.1 400 Bad Request - path traversal attempt
+2024-03-15 10:01:21 203.0.113.22 GET /proc/self/environ HTTP/1.1 403 Forbidden
+2024-03-15 10:01:22 WAF: directory traversal blocked: ../../../etc/passwd from 203.0.113.22
+2024-03-15 10:01:24 203.0.113.22 GET /shell.php HTTP/1.1 404 Not Found
+2024-03-15 10:01:25 203.0.113.22 GET /api/admin/users HTTP/1.1 401 Unauthorized - invalid token
+2024-03-15 10:01:26 203.0.113.22 GET /api/admin/config HTTP/1.1 401 Unauthorized - invalid session
+2024-03-15 10:01:27 syslog: permission denied: user 'www-data' attempted to read /etc/shadow
+2024-03-15 10:01:28 syslog: privilege escalation attempt: sudo -u root /bin/bash from user 'www-data'
+2024-03-15 10:01:30 syslog: unauthorized access to resource /var/log/auth.log by process php-fpm
+2024-03-15 10:01:32 syslog: session hijacking detected - session token reuse from different IP (original: 192.168.1.10, new: 203.0.113.22)
+2024-03-15 10:01:34 AUTH: invalid token for endpoint /api/export - session expired
+2024-03-15 10:01:36 syslog: su root attempted by user 'apache' - permission denied
+2024-03-15 10:01:38 203.0.113.22 GET /backup.sql HTTP/1.1 403 Forbidden - not allowed resource
+2024-03-15 10:01:40 203.0.113.22 GET /server-status HTTP/1.1 403 Forbidden - forbidden endpoint
+2024-03-15 10:02:00 192.168.1.5 GET /products HTTP/1.1 200 8192
+2024-03-15 10:02:10 192.168.1.5 GET /api/user/profile HTTP/1.1 200 512

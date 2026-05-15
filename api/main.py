@@ -6,7 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
-from api.routers import forecast, gap, graph, metrics, pipeline
+from api.routers import forecast, gap, graph, log_analysis, metrics, pipeline
 
 app = FastAPI(title="CyberForesight API", version="1.0.0")
 
@@ -28,7 +28,8 @@ app.include_router(forecast.router, prefix="/api/forecast", tags=["forecast"])
 app.include_router(gap.router,      prefix="/api/gap",      tags=["gap"])
 app.include_router(graph.router,    prefix="/api/graph",    tags=["graph"])
 app.include_router(metrics.router,  prefix="/api/metrics",  tags=["metrics"])
-app.include_router(pipeline.router, prefix="/api/pipeline", tags=["pipeline"])
+app.include_router(pipeline.router,      prefix="/api/pipeline",      tags=["pipeline"])
+app.include_router(log_analysis.router, prefix="/api/log-analysis", tags=["log-analysis"])
 
 # --- Serve the React production build (frontend/dist) if it exists ---
 DIST = Path(__file__).parent.parent / "frontend" / "dist"

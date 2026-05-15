@@ -61,7 +61,8 @@ def _build_atc_phases(forecast_df: pd.DataFrame) -> pd.DataFrame:
 
 
 def _recommendations_pdf(df: pd.DataFrame, path: str):
-    top = df.head(20)[["threat", "pat", "gap_2025", "gap_2026", "gap_2027", "category"]]
+    gap_cols = [c for c in df.columns if c.startswith("gap_") and not c.startswith("gap_magnitude")]
+    top = df.head(20)[["threat", "pat", *gap_cols, "category"]]
     fig, ax = plt.subplots(figsize=(14, 7))
     ax.axis("off")
     tbl = ax.table(cellText=top.round(3).values, colLabels=top.columns, loc="center")

@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { api, GapRow } from "../api/client";
 import Hint from "../components/Hint";
 
@@ -12,7 +12,7 @@ const CATEGORY_MAP: Record<string, { label: string; color: string; desc: string 
   OWG: {
     label: "Growing Gap",
     color: "bg-orange-500/20 text-orange-400",
-    desc: "Gap is actively widening — defense falling further behind",
+    desc: "Gap is actively widening - defense falling further behind",
   },
   SNG: {
     label: "Balanced",
@@ -22,11 +22,12 @@ const CATEGORY_MAP: Record<string, { label: string; color: string; desc: string 
   SWG: {
     label: "Critical Gap",
     color: "bg-red-500/20 text-red-400",
-    desc: "Significant and widening gap — highest investment priority",
+    desc: "Significant and widening gap - highest investment priority",
   },
 };
 
 function gapCellColor(val: number) {
+  if (!Number.isFinite(val)) return "bg-slate-700 text-slate-300";
   const abs = Math.abs(val);
   if (val > 0) return "bg-green-900/40 text-green-300";
   if (abs < 0.1) return "bg-slate-700 text-slate-300";
@@ -34,9 +35,26 @@ function gapCellColor(val: number) {
   return "bg-red-900/50 text-red-300";
 }
 
+function findColumns(rows: GapRow[] | undefined, pattern: RegExp, prefixLength: number) {
+  const columns = new Set<string>();
+  rows?.forEach((row) => {
+    Object.keys(row).forEach((key) => {
+      if (pattern.test(key)) columns.add(key);
+    });
+  });
+  return [...columns].sort(
+    (a, b) => Number(a.slice(prefixLength)) - Number(b.slice(prefixLength)),
+  );
+}
+
+function formatNumber(value: unknown) {
+  const num = Number(value);
+  return Number.isFinite(num) ? num.toFixed(3) : "-";
+}
+
 export default function GapAnalysis() {
   const [category, setCategory] = useState<string>("all");
-  const [sortBy, setSortBy] = useState("gap_magnitude_2027");
+  const [sortBy, setSortBy] = useState("gap_magnitude_latest");
 
   const { data: categories } = useQuery<string[]>({
     queryKey: ["gap-categories"],
@@ -57,6 +75,26 @@ export default function GapAnalysis() {
         .then((r) => r.data),
   });
 
+  const gapColumns = useMemo(
+    () => findColumns(rows, /^gap_\d{4}$/, "gap_".length),
+    [rows],
+  );
+  const priorityColumn = useMemo(
+    () =>
+      findColumns(rows, /^gap_magnitude_\d{4}$/, "gap_magnitude_".length).at(-1),
+    [rows],
+  );
+  const sortOptions = useMemo(
+    () => [
+      { value: "gap_magnitude_latest", label: "Sort: Priority Score" },
+      ...gapColumns.map((col) => ({
+        value: col,
+        label: `Sort: Gap in ${col.slice("gap_".length)}`,
+      })),
+    ],
+    [gapColumns],
+  );
+
   return (
     <div className="space-y-4">
       <div>
@@ -67,9 +105,8 @@ export default function GapAnalysis() {
         </p>
       </div>
 
-      <Hint text="A negative gap value means the threat is being researched more than the defense technology — i.e. attackers are ahead of defenders in the literature. A larger negative number = higher urgency for investment. Positive values mean defense is keeping up or leading." />
+      <Hint text="A negative gap value means the threat is being researched more than the defense technology - i.e. attackers are ahead of defenders in the literature. A larger negative number = higher urgency for investment. Positive values mean defense is keeping up or leading." />
 
-      {/* Category legend */}
       <div className="flex flex-wrap gap-2">
         {Object.entries(CATEGORY_MAP).map(([code, info]) => (
           <div
@@ -78,12 +115,11 @@ export default function GapAnalysis() {
             title={info.desc}
           >
             <span className="font-semibold">{info.label}</span>
-            <span className="text-slate-500 hidden sm:inline">— {info.desc}</span>
+            <span className="text-slate-500 hidden sm:inline">- {info.desc}</span>
           </div>
         ))}
       </div>
 
-      {/* Filters */}
       <div className="flex items-center gap-3 flex-wrap">
         <div className="flex gap-2 flex-wrap">
           <button
@@ -115,14 +151,14 @@ export default function GapAnalysis() {
           onChange={(e) => setSortBy(e.target.value)}
           className="ml-auto bg-[#1e293b] border border-[#334155] text-slate-300 text-sm rounded-lg px-3 py-1.5 outline-none"
         >
-          <option value="gap_magnitude_2027">Sort: Priority Score (2027)</option>
-          <option value="gap_2025">Sort: Gap in 2025</option>
-          <option value="gap_2026">Sort: Gap in 2026</option>
-          <option value="gap_2027">Sort: Gap in 2027</option>
+          {sortOptions.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
         </select>
       </div>
 
-      {/* Table */}
       <div className="bg-[#1e293b] border border-[#334155] rounded-xl overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
@@ -131,14 +167,15 @@ export default function GapAnalysis() {
                 <th className="text-left px-4 py-3">Cyber Threat</th>
                 <th className="text-left px-4 py-3">Defense Technology</th>
                 <th className="text-left px-4 py-3">Status</th>
-                <th
-                  className="text-center px-4 py-3"
-                  title="Positive = defense ahead, negative = threat ahead"
-                >
-                  Gap 2025
-                </th>
-                <th className="text-center px-4 py-3">Gap 2026</th>
-                <th className="text-center px-4 py-3">Gap 2027</th>
+                {gapColumns.map((col) => (
+                  <th
+                    key={col}
+                    className="text-center px-4 py-3"
+                    title="Positive = defense ahead, negative = threat ahead"
+                  >
+                    {col.replace("_", " ").toUpperCase()}
+                  </th>
+                ))}
                 <th
                   className="text-center px-4 py-3"
                   title="Higher = more urgent to address"
@@ -150,55 +187,72 @@ export default function GapAnalysis() {
             <tbody>
               {isLoading ? (
                 <tr>
-                  <td colSpan={7} className="text-center py-10 text-slate-500">
-                    Loading…
+                  <td
+                    colSpan={4 + Math.max(1, gapColumns.length)}
+                    className="text-center py-10 text-slate-500"
+                  >
+                    Loading...
                   </td>
                 </tr>
-              ) : (
-                rows?.map((row, i) => {
-                  const catInfo = CATEGORY_MAP[row.category];
+              ) : rows && rows.length > 0 ? (
+                rows.map((row, i) => {
+                  const catInfo = CATEGORY_MAP[String(row.category)];
                   return (
                     <tr
-                      key={i}
+                      key={`${row.threat}-${row.pat}-${i}`}
                       className="border-b border-[#334155]/50 hover:bg-slate-700/20 transition-colors"
                     >
                       <td className="px-4 py-2.5 text-red-400 font-medium">
-                        {row.threat}
+                        {String(row.threat)}
                       </td>
-                      <td className="px-4 py-2.5 text-blue-400">{row.pat}</td>
+                      <td className="px-4 py-2.5 text-blue-400">
+                        {String(row.pat)}
+                      </td>
                       <td className="px-4 py-2.5">
                         <span
                           className={`px-2 py-0.5 rounded-full text-xs ${catInfo?.color ?? "bg-slate-700 text-slate-300"}`}
                           title={catInfo?.desc}
                         >
-                          {catInfo?.label ?? row.category}
+                          {catInfo?.label ?? String(row.category)}
                         </span>
                       </td>
-                      {(["gap_2025", "gap_2026", "gap_2027"] as const).map((k) => (
-                        <td key={k} className="px-4 py-2.5 text-center">
-                          <span
-                            className={`px-2 py-0.5 rounded text-xs font-mono ${gapCellColor(row[k])}`}
-                          >
-                            {row[k].toFixed(3)}
-                          </span>
-                        </td>
-                      ))}
+                      {gapColumns.map((col) => {
+                        const value = Number(row[col]);
+                        return (
+                          <td key={col} className="px-4 py-2.5 text-center">
+                            <span
+                              className={`px-2 py-0.5 rounded text-xs font-mono ${gapCellColor(value)}`}
+                            >
+                              {formatNumber(row[col])}
+                            </span>
+                          </td>
+                        );
+                      })}
                       <td className="px-4 py-2.5 text-center text-white font-mono text-xs font-semibold">
-                        {row.gap_magnitude_2027.toFixed(3)}
+                        {formatNumber(priorityColumn ? row[priorityColumn] : undefined)}
                       </td>
                     </tr>
                   );
                 })
+              ) : (
+                <tr>
+                  <td
+                    colSpan={4 + Math.max(1, gapColumns.length)}
+                    className="text-center py-10 text-slate-500"
+                  >
+                    No gap rows found.
+                  </td>
+                </tr>
               )}
             </tbody>
           </table>
         </div>
         {rows && (
           <div className="px-4 py-2 border-t border-[#334155] text-xs text-slate-500 flex gap-4">
-            <span>{rows.length} threat–defense pairs shown</span>
+            <span>{rows.length} threat-defense pairs shown</span>
             <span>
-              <span className="text-red-400">Red cell</span> = large deficit ·{" "}
-              <span className="text-yellow-400">Yellow</span> = moderate ·{" "}
+              <span className="text-red-400">Red cell</span> = large deficit |{" "}
+              <span className="text-yellow-400">Yellow</span> = moderate |{" "}
               <span className="text-green-400">Green</span> = defense ahead
             </span>
           </div>

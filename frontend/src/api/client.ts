@@ -21,11 +21,8 @@ export interface ForecastSummary {
 export interface GapRow {
   threat: string;
   pat: string;
-  gap_2025: number;
-  gap_2026: number;
-  gap_2027: number;
   category: string;
-  gap_magnitude_2027: number;
+  [key: string]: string | number;
 }
 
 export interface GraphData {

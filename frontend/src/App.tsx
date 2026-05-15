@@ -3,6 +3,7 @@ import Layout from "./components/layout/Layout";
 import ATC from "./pages/ATC";
 import Forecast from "./pages/Forecast";
 import GapAnalysis from "./pages/GapAnalysis";
+import LogAnalysis from "./pages/LogAnalysis";
 import ModelMetrics from "./pages/ModelMetrics";
 import Overview from "./pages/Overview";
 import ThreatGraph from "./pages/ThreatGraph";
@@ -19,6 +20,7 @@ export default function App() {
         <Route path="/atc" element={<ATC />} />
         <Route path="/gallery" element={<TrendGallery />} />
         <Route path="/metrics" element={<ModelMetrics />} />
+        <Route path="/log-analysis" element={<LogAnalysis />} />
       </Routes>
     </Layout>
   );

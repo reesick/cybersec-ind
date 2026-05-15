@@ -82,7 +82,7 @@ const CustomTooltip = ({
       <div className="text-slate-400 mb-1">{label}</div>
       {pred && (
         <div className="text-blue-400 font-medium">
-          Predicted: {pred.value.toFixed(3)} papers/month
+          Predicted: {pred.value.toFixed(3)}
         </div>
       )}
       {ciLower && upper !== null && (
@@ -194,7 +194,7 @@ export default function Forecast() {
           </div>
         </div>
 
-        <Hint text="The blue line shows how many academic papers per month the model predicts will mention this topic. The shaded band is the 95% uncertainty range — wider bands mean the model is less certain about that period. Generated using Bayesian Monte Carlo dropout." />
+        <Hint text="The blue line shows the predicted research activity volume for this topic over the forecast horizon. The shaded band is the 95% uncertainty range — wider bands mean the model is less certain about that period. Generated using Bayesian Monte Carlo dropout." />
 
         {isLoading ? (
           <div className="flex-1 flex items-center justify-center text-slate-500">
@@ -219,7 +219,7 @@ export default function Forecast() {
               <YAxis
                 tick={{ fill: "#94a3b8", fontSize: 11 }}
                 label={{
-                  value: "Papers / month",
+                  value: "Predicted Volume",
                   angle: -90,
                   position: "insideLeft",
                   offset: 10,
@@ -231,7 +231,7 @@ export default function Forecast() {
               <Legend
                 verticalAlign="top"
                 formatter={(val) => {
-                  if (val === "Predicted Volume") return "Predicted volume (papers/month)";
+                  if (val === "Predicted Volume") return "Predicted volume";
                   if (val === "CI Floor") return "95% confidence band";
                   return null;
                 }}
